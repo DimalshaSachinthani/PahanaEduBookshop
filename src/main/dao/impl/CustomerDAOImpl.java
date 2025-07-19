@@ -29,6 +29,25 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
     }
 
+    @Override
+    public List<Customer> findAll() {
+        List<Customer> customers = new ArrayList<>();
+        String query = "SELECT * FROM customers";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                customers.add(extractCustomer(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customers;
+    }
+
 
 
 
