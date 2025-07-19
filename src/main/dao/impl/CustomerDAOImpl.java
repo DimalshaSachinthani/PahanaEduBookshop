@@ -50,6 +50,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 
 
+    @Override
+    public void update(Customer customer) {
+        String query = "UPDATE customers SET acc_no=?, name=?, address=?, phone=?, email=? WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, customer.getaccNo());
+            stmt.setString(2, customer.getName());
+            stmt.setString(3, customer.getAddress());
+            stmt.setString(4, customer.getPhone());
+            stmt.setString(5, customer.getEmail());
+            stmt.setInt(6, customer.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
     @Override
     public boolean saveWithValidation(Customer customer) {
@@ -69,6 +88,13 @@ public class CustomerDAOImpl implements CustomerDAO {
         System.out.println("Customer registered successfully.");
         return true;
     }
+
+
+
+
+
+
+
     private Customer extractCustomer(ResultSet rs) throws SQLException {
         Customer customer = new Customer();
         customer.setId(rs.getInt("id"));
