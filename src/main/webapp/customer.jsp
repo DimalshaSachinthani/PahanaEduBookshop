@@ -13,11 +13,11 @@
       <ul class="nav">
         <li><a href="dashboard.jsp" class="nav-link">📚 Dashboard</a></li>
         <li><a href="Customer" class="nav-link active">🧑‍🤝‍🧑 Customers</a></li>
-        <li><a href="items.jsp" class="nav-link">📦 Items</a></li>
-        <li><a href="accountDetils.jsp" class="nav-link">🗂 Account Details</a></li>
+        <li><a href="Item" class="nav-link">📦 Items</a></li>
+        <li><a href="AccountDetails" class="nav-link">🗂 Account Details</a></li>
         <li><a href="billing.jsp" class="nav-link">💳 Billing</a></li>
-        <li><a href="#" class="nav-link">🆘 Help</a></li>
-        <li><a href="" class="nav-link">📈 Reports</a></li>
+        <li><a href="help.jsp" class="nav-link">🆘 Help</a></li>
+        <li><a href="reports.jsp" class="nav-link">📈 Reports</a></li>
       </ul>
     </nav>
     <div class="logout-container">
@@ -29,20 +29,26 @@
   <main class="main">
     <h2 class="title">👥 Customer Management</h2>
 
-    <!-- Add Customer Form -->
+    <!-- Add/Edit Customer Form -->
     <form class="customer-form" action="Customer" method="post">
-      <h3>Add New Customer</h3>
+      <h3 id="form-title">Add New Customer</h3>
+
+      <!-- Hidden fields -->
+      <input type="hidden" name="id" id="inputId">
+      <input type="hidden" name="action" id="formAction" value="create">
+
       <div class="form-group">
-        <input type="text" name="accNo" placeholder="Account Number" required />
-        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="text" name="accNo" id="inputAccNo" placeholder="Account Number" required />
+        <input type="text" name="name" id="inputName" placeholder="Full Name" required />
       </div>
       <div class="form-group">
-        <input type="text" name="address" placeholder="Address" required />
-        <input type="tel" name="phone" placeholder="Telephone Number" required />
+        <input type="text" name="address" id="inputAddress" placeholder="Address" required />
+        <input type="tel" name="phone" id="inputPhone" placeholder="Telephone Number" required />
       </div>
       <div class="form-group">
-        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="email" name="email" id="inputEmail" placeholder="Email Address" required />
       </div>
+
       <button type="submit" class="btn-submit">Add Customer</button>
     </form>
 
@@ -77,10 +83,22 @@
            <td><%= customer.getPhone() %></td>
            <td><%= customer.getEmail() %></td>
            <td>
-             <a href="Customer?action=edit&id=<%= customer.getId() %>" class="btn-edit">Edit</a>
-             <a href="Customer?action=delete&id=<%= customer.getId() %>" class="btn-delete"
-                onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
-           </td>
+                   <button
+                     class="btn-edit"
+                     data-id="<%= customer.getId() %>"
+                     data-accno="<%= customer.getaccNo() %>"
+                     data-name="<%= customer.getName() %>"
+                     data-address="<%= customer.getAddress() %>"
+                     data-phone="<%= customer.getPhone() %>"
+                     data-email="<%= customer.getEmail() %>"
+                   >Edit</button>
+
+                   <form action="Customer" method="post" class="delete-form" style="display:inline;">
+                     <input type="hidden" name="action" value="delete">
+                     <input type="hidden" name="id" value="<%= customer.getId() %>"/>
+                     <button class="btn-delete" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                   </form>
+                 </td>
          </tr>
          <%
              }
@@ -100,6 +118,44 @@
 </div>
 
 </body>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.btn-edit');
+
+    const form = document.querySelector('.customer-form');
+    const inputId = document.getElementById('inputId');
+    const inputAccNo = document.getElementById('inputAccNo');
+    const inputName = document.getElementById('inputName');
+    const inputAddress = document.getElementById('inputAddress');
+    const inputPhone = document.getElementById('inputPhone');
+    const inputEmail = document.getElementById('inputEmail');
+    const actionInput = document.getElementById('formAction');
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = form.querySelector('.btn-submit');
+
+    editButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        inputId.value = button.getAttribute('data-id');
+        inputAccNo.value = button.getAttribute('data-accno');
+        inputName.value = button.getAttribute('data-name');
+        inputAddress.value = button.getAttribute('data-address');
+        inputPhone.value = button.getAttribute('data-phone');
+        inputEmail.value = button.getAttribute('data-email');
+
+
+        actionInput.value = 'update';
+
+        formTitle.textContent = 'Update Customer';
+        submitBtn.textContent = 'Update Customer';
+      });
+    });
+  });
+</script>
+
+
+
 
 <head>
   <meta charset="UTF-8">
@@ -128,6 +184,10 @@
 
   /* Sidebar */
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
     width: 285px;
     height:670px;
     background: rgba(255, 255, 255, 0.95);
@@ -190,6 +250,7 @@
 
   /* Main Content */
   .main {
+    margin-left: 285px;
     flex-grow: 1;
     padding: 40px;
     overflow-y: auto;
