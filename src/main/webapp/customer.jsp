@@ -12,10 +12,10 @@
     <nav>
       <ul class="nav">
         <li><a href="dashboard.jsp" class="nav-link">📚 Dashboard</a></li>
-        <li><a href="customers.jsp" class="nav-link active">🧑‍🤝‍🧑 Customers</a></li>
+        <li><a href="Customer" class="nav-link active">🧑‍🤝‍🧑 Customers</a></li>
         <li><a href="items.jsp" class="nav-link">📦 Items</a></li>
-        <li><a href="#" class="nav-link">🗂 Account Details</a></li>
-        <li><a href="#" class="nav-link">💳 Billing</a></li>
+        <li><a href="accountDetils.jsp" class="nav-link">🗂 Account Details</a></li>
+        <li><a href="billing.jsp" class="nav-link">💳 Billing</a></li>
         <li><a href="#" class="nav-link">🆘 Help</a></li>
         <li><a href="" class="nav-link">📈 Reports</a></li>
       </ul>
@@ -30,8 +30,7 @@
     <h2 class="title">👥 Customer Management</h2>
 
     <!-- Add Customer Form -->
-    <form class="customer-form" action="<%= request.getContextPath() %>/Customer" method="post">
-
+    <form class="customer-form" action="Customer" method="post">
       <h3>Add New Customer</h3>
       <div class="form-group">
         <input type="text" name="accNo" placeholder="Account Number" required />
@@ -62,31 +61,38 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <%
-            List<Customer> customers = (List<Customer>) request.getAttribute("customers");
-            if (customers != null) {
-              for (Customer customer : customers) {
-          %>
-          <tr>
-            <td><%= customer.getaccNo() %></td>
-            <td><%= customer.getName() %></td>
-            <td><%= customer.getAddress() %></td>
-            <td><%= customer.getPhone() %></td>
-            <td><%= customer.getEmail() %></td>
-          </tr>
-          <%
-              }
-            } else {
-          %>
-          <tr>
-            <td colspan="5">No customers found.</td>
-          </tr>
-          <%
-            }
-          %>
+         <%
+           List<Customer> customers = (List<Customer>) request.getAttribute("customers");
+           if (customers != null) {
+             for (Customer customer : customers) {
+         %>
+         <tr>
+           <td><%= customer.getaccNo() %></td>
+           <td><%= customer.getName() %></td>
+           <td><%= customer.getAddress() %></td>
+           <td><%= customer.getPhone() %></td>
+           <td><%= customer.getEmail() %></td>
+           <td>
+             <a href="Customer?action=edit&id=<%= customer.getId() %>" class="btn-edit">Edit</a>
+             <a href="Customer?action=delete&id=<%= customer.getId() %>" class="btn-delete"
+                onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
+           </td>
+         </tr>
+         <%
+             }
+           } else {
+         %>
+         <tr>
+           <td colspan="6">No customers found.</td>
+         </tr>
+         <%
+           }
+         %>
+
         </tbody>
       </table>
     </div>
