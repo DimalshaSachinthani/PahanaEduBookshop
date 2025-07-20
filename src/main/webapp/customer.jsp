@@ -93,12 +93,16 @@
                      data-email="<%= customer.getEmail() %>"
                    >Edit</button>
 
+                   <!-- delete customer -->
+
                    <form action="Customer" method="post" class="delete-form" style="display:inline;">
                      <input type="hidden" name="action" value="delete">
                      <input type="hidden" name="id" value="<%= customer.getId() %>"/>
                      <button class="btn-delete" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
                    </form>
                  </td>
+
+
          </tr>
          <%
              }
