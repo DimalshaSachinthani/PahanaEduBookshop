@@ -48,7 +48,22 @@ public class CustomerDAOImpl implements CustomerDAO {
         return customers;
     }
 
-
+    @Override
+    public Customer findById(int id) {
+        String query = "SELECT * FROM customers WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractCustomer(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
     @Override
     public void update(Customer customer) {
@@ -67,7 +82,17 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
     }
 
-
+    @Override
+    public void delete(int id) {
+        String query = "DELETE FROM customers WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override
@@ -90,7 +115,42 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
 
+    @Override
+    public Customer findByAccountNumber(String accNo) {
+        String query = "SELECT * FROM customers WHERE acc_no = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            stmt.setString(1, accNo);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractCustomer(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+
+    @Override
+    public Customer findByName(String name) {
+        String query = "SELECT * FROM customers WHERE name = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, name);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractCustomer(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
 
 
