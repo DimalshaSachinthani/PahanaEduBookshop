@@ -27,9 +27,24 @@ public class ItemDAOImpl implements ItemDAO {
         }
     }
 
+    @Override
+    public List<Item> findAll() {
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT * FROM items";
 
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
 
+            while (rs.next()) {
+                items.add(extractItem(rs));
+            }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return items;
+    }
 
     private Item extractItem(ResultSet rs) throws SQLException {
         Item item = new Item();

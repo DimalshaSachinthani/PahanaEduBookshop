@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface ItemDAO {
     void save(Item item);
+    List<Item> findAll();
 
 
 }
