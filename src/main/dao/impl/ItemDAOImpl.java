@@ -46,6 +46,32 @@ public class ItemDAOImpl implements ItemDAO {
         return items;
     }
 
+
+
+    @Override
+    public void update(Item item) {
+        String query = "UPDATE items SET name = ?, price = ?, stock = ? WHERE item_code = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, item.getName());
+            stmt.setDouble(2, item.getPrice());
+            stmt.setInt(3, item.getStock());
+            stmt.setString(4, item.getItemCode());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
+
     private Item extractItem(ResultSet rs) throws SQLException {
         Item item = new Item();
         item.setItemCode(rs.getString("item_code"));
