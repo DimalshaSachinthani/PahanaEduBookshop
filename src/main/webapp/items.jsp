@@ -14,7 +14,7 @@
         <li><a href="Customer" class="nav-link">🧑‍🤝‍🧑 Customers</a></li>
         <li><a href="Item" class="nav-link">📦 Items</a></li>
         <li><a href="AccountDetails" class="nav-link">🗂️ Account Details</a></li>
-        <li><a href="billing.jsp" class="nav-link">💳 Billing</a></li>
+        <li><a href="BillingPage" class="nav-link">💳 Billing</a></li>
         <li><a href="help.jsp" class="nav-link">🆘 Help</a></li>
         <li><a href="reports.jsp" class="nav-link">📈 Reports</a></li>
       </ul>
@@ -48,37 +48,54 @@
     <div class="table-container">
       <h3>Item List</h3>
       <table>
-          <thead>
-              <tr>
-                  <th>Item Code</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-              </tr>
-          </thead>
-          <tbody>
-              <%
-                  List<model.Item> items = (List<model.Item>) request.getAttribute("items");
-                  if (items != null && !items.isEmpty()) {
-                      for (model.Item item : items) {
-              %>
-              <tr>
-                  <td><%= item.getItemCode() %></td>
-                  <td><%= item.getName() %></td>
-                  <td><%= item.getPrice() %></td>
-                  <td><%= item.getStock() %></td>
-              </tr>
-              <%
-                      }
-                  } else {
-              %>
-              <tr>
-                  <td colspan="4">No items found.</td>
-              </tr>
-              <%
+        <thead>
+          <tr>
+            <th>Item Code</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+              List<model.Item> items = (List<model.Item>) request.getAttribute("items");
+              if (items != null) {
+                  for (model.Item item : items) {
+          %>
+          <tr>
+              <td><%= item.getItemCode() %></td>
+              <td><%= item.getName() %></td>
+              <td><%= item.getPrice() %></td>
+              <td><%= item.getStock() %></td>
+              <td>
+                  <button
+                    class="btn-edit"
+                    data-code="<%= item.getItemCode() %>"
+                    data-name="<%= item.getName() %>"
+                    data-price="<%= item.getPrice() %>"
+                    data-stock="<%= item.getStock() %>">Edit</button>
+
+                <form method="post" action="${pageContext.request.contextPath}/Item" style="display:inline;">
+                            Delete
+                        </button>
+                    </form>
+
+
+              </td>
+          </tr>
+          <%
                   }
-              %>
-          </tbody>
+              } else {
+          %>
+          <tr>
+              <td colspan="5">No items found.</td>
+          </tr>
+          <%
+              }
+          %>
+
+        </tbody>
       </table>
     </div>
   </main>
