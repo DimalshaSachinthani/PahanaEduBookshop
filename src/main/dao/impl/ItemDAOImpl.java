@@ -46,7 +46,24 @@ public class ItemDAOImpl implements ItemDAO {
         return items;
     }
 
+    @Override
+    public Item findByCode(String itemCode) {
+        String query = "SELECT * FROM items WHERE item_code = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            stmt.setString(1, itemCode);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractItem(rs);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
     @Override
     public void update(Item item) {
@@ -67,13 +84,26 @@ public class ItemDAOImpl implements ItemDAO {
 
 
 
+    @Override
+    public void deleteById(int id) {
+        String query = "DELETE FROM items WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            stmt.setInt(1, id);
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows deleted: " + rows);  // Optional: Debug
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
 
     private Item extractItem(ResultSet rs) throws SQLException {
         Item item = new Item();
+        item.setId(rs.getInt("id"));
         item.setItemCode(rs.getString("item_code"));
         item.setName(rs.getString("name"));
         item.setPrice(rs.getDouble("price"));

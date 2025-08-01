@@ -29,6 +29,25 @@ public class ItemServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         try {
+            if ("delete".equalsIgnoreCase(action)) {
+                String idStr = request.getParameter("id");
+                if (idStr != null && !idStr.trim().isEmpty()) {
+                    try {
+                        int id = Integer.parseInt(idStr.trim());
+                        itemDAO.deleteById(id);  // This must delete the item
+                        response.sendRedirect(request.getContextPath() + "/Item?success=deleted");
+                    } catch (NumberFormatException e) {
+                        request.setAttribute("error", "Invalid item id for deletion.");
+                        forwardWithItems(request, response);
+                    }
+                } else {
+                    request.setAttribute("error", "Item id missing for deletion.");
+                    forwardWithItems(request, response);
+                }
+                return;
+            }
+
+
             String itemCode = request.getParameter("itemCode");
             String name = request.getParameter("itemName");
             String priceStr = request.getParameter("price");
@@ -99,3 +118,4 @@ public class ItemServlet extends HttpServlet {
         request.getRequestDispatcher("items.jsp").forward(request, response);
     }
 }
+

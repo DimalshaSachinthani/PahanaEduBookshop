@@ -20,7 +20,7 @@
       </ul>
     </nav>
     <div class="logout-container">
-      <button class="btn-dark">Log Out</button>
+      <button class="btn-dark" onclick="window.location.href='login.jsp'">Log Out</button>
     </div>
   </aside>
 
@@ -76,11 +76,15 @@
                     data-price="<%= item.getPrice() %>"
                     data-stock="<%= item.getStock() %>">Edit</button>
 
-                <form method="post" action="${pageContext.request.contextPath}/Item" style="display:inline;">
-                            Delete
-                        </button>
-                    </form>
 
+                <form method="post" action="<%= request.getContextPath() %>/Item">
+                    <input type="hidden" name="action" value="delete"/>
+                    <input type="hidden" name="id" value="<%= item.getId() %>"/>
+                    <button type="submit" class="btn-delete"
+                          onclick="return confirm('Are you sure you want to delete this item?');">
+                        Delete
+                    </button>
+                 </form>
 
               </td>
           </tr>
