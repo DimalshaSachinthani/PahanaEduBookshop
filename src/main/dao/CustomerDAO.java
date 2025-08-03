@@ -16,5 +16,5 @@ public interface CustomerDAO {
     Customer findByAccountNumber(String accNo);
     Customer findByName(String name);
 }
-}
+
 
