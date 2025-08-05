@@ -12,9 +12,9 @@ public interface CustomerDAO {
     void update(Customer customer);
     void delete(int id) throws SQLException;
     boolean saveWithValidation(Customer customer);
+
     Customer findByAccountNumber(String accNo);
     Customer findByName(String name);
 }
-
 
 
