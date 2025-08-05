@@ -21,6 +21,7 @@ public class Validator {
 
 
 
+
     private static final Pattern EMAIL_PATTERN= Pattern.compile(
             "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
     );
@@ -36,4 +37,5 @@ public class Validator {
     public static boolean isNotEmpty(String value){
         return value !=null && !value.trim().isEmpty();
     }
+
 }
