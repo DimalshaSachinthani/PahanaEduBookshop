@@ -15,8 +15,10 @@ public class SearchCustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         String accNo = request.getParameter("accountNumber");
         String name = request.getParameter("name");
+
 
         Customer customer = null;
         CustomerDAOImpl dao = new CustomerDAOImpl();
@@ -26,6 +28,7 @@ public class SearchCustomerServlet extends HttpServlet {
         } else if (name != null && !name.trim().isEmpty()) {
             customer = dao.findByName(name.trim());
         }
+
 
         request.setAttribute("customer", customer);
         request.getRequestDispatcher("BillingPage").forward(request, response);
