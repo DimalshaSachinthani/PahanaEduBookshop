@@ -12,16 +12,16 @@
     <nav>
       <ul class="nav">
         <li><a href="dashboard.jsp" class="nav-link">📚 Dashboard</a></li>
-        <li><a href="Customer" class="nav-link active">🧑‍🤝‍🧑 Customers</a></li>
+        <li><a href="Customer" class="nav-link">🧑‍🤝‍🧑 Customers</a></li>
         <li><a href="Item" class="nav-link">📦 Items</a></li>
-        <li><a href="AccountDetails" class="nav-link">🗂 Account Details</a></li>
-        <li><a href="billing.jsp" class="nav-link">💳 Billing</a></li>
+        <li><a href="AccountDetails" class="nav-link">🗂️ Account Details</a></li>
+        <li><a href="BillingPage" class="nav-link">💳 Billing</a></li>
         <li><a href="help.jsp" class="nav-link">🆘 Help</a></li>
-        <li><a href="reports.jsp" class="nav-link">📈 Reports</a></li>
+        <li><a href="Order" class="nav-link">📈 Orders</a></li>
       </ul>
     </nav>
     <div class="logout-container">
-      <button class="btn-dark">Log Out</button>
+      <button class="btn-dark" onclick="window.location.href='login.jsp'">Log Out</button>
     </div>
   </aside>
 

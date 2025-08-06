@@ -16,7 +16,7 @@
         <li><a href="AccountDetails" class="nav-link">🗂️ Account Details</a></li>
         <li><a href="BillingPage" class="nav-link">💳 Billing</a></li>
         <li><a href="help.jsp" class="nav-link">🆘 Help</a></li>
-        <li><a href="reports.jsp" class="nav-link">📈 Reports</a></li>
+        <li><a href="Order" class="nav-link">📈 Orders</a></li>
       </ul>
     </nav>
     <div class="logout-container">
@@ -69,6 +69,7 @@
               <td><%= item.getPrice() %></td>
               <td><%= item.getStock() %></td>
               <td>
+                <div class="button-group">
                   <button
                     class="btn-edit"
                     data-code="<%= item.getItemCode() %>"
@@ -85,7 +86,7 @@
                         Delete
                     </button>
                  </form>
-
+                </div>
               </td>
           </tr>
           <%
@@ -337,6 +338,12 @@
   .btn-delete {
     background-color: #ff6b81;
     color: white;
+  }
+
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between buttons */
   }
 
   </style>
