@@ -8,7 +8,9 @@
   <name>PahanaEdu4 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
     <dependency>
+
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>5.10.2</version>
@@ -20,6 +22,23 @@
       <artifactId>jakarta.servlet-api</artifactId>
       <version>5.0.0</version> <!-- or 6.0.0 if using Jakarta EE 10 -->
       <scope>provided</scope>
+
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version> <!-- or compatible version -->
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+
     </dependency>
 
   </dependencies>
