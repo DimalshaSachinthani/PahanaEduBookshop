@@ -53,7 +53,7 @@
   <!--   fileEncoding        Encoding to be used to read static resources   -->
   <!--                       [platform default]                             -->
   <!--                                                                      -->
-  <!--   useBomIfPresent     If a static file contains a byte order mark    -->
+  <!--   useBomIfPresent     If a static file contains a byte orders mark    -->
   <!--                       (BOM), should this be used to determine the    -->
   <!--                       file encoding in preference to fileEncoding.   -->
   <!--                       [true]                                         -->
