@@ -4,7 +4,7 @@
   <groupId>org.example</groupId>
   <artifactId>PahanaEdu4</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>PahanaEdu4 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -23,10 +23,7 @@
       <version>5.0.0</version> <!-- or 6.0.0 if using Jakarta EE 10 -->
       <scope>provided</scope>
 
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version> <!-- or compatible version -->
-      <scope>provided</scope>
+
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -46,7 +43,6 @@
     <finalName>PahanaEdu4</finalName>
 
     <plugins>
-      <!-- ✅ Ensure Maven runs JUnit 5 tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
