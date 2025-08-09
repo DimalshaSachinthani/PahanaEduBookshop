@@ -3,7 +3,6 @@
 **Target Branch:** `staging`  
 **Merge Source:** `dev`  
 
-**Date:** 2025-08-07  
 
 **Date:** 2025-08-09  
 
@@ -25,16 +24,6 @@
 
 | Module              | Test Case Description                                 | Status   |
 |---------------------|-------------------------------------------------------|----------|
-
-| Authentication      | Login with valid/invalid credentials                  | 🕐 Pending   |
-| Logout              | Logout clears session and redirects to login          | 🕐 Pending   |
-| Dashboard           | Links to all modules are visible and functional       | 🕐 Pending   |
-| Customer Management | Add, edit, delete, list customers                     | 🕐 Pending   |
-| Item Management     | Add, edit, delete, list items with styled UI          | 🕐 Pending   |
-| Billing Module      | Create bill with multiple items, quantity, total calc | 🕐 Pending   |
-| Billing Module      | View bill details correctly                           | 🕐 Pending   |
-| Help Page           | Opens help.jsp from dashboard and shows guide         | 🕐 Pending   |
-
 | Authentication      | Login with valid/invalid credentials                  | ✅ Pass   |
 | Logout              | Logout clears session and redirects to login          | ✅ Pass   |
 | Dashboard           | Links to all modules are visible and functional       | ✅ Pass   |
@@ -53,12 +42,6 @@
 
 | Task                                            | Status    |
 |-------------------------------------------------|-----------|
-
-| `mvn clean test` runs successfully              | 🕐 Pending |
-| DAO layer tests (Customer, Item) pass           | 🕐 Pending |
-| Service layer tests (Customer, Item, Auth) pass | 🕐 Pending |
-| Test setup and teardown logic verified          | 🕐 Pending |
-
 | `mvn clean test` runs successfully              | ✅ Pass |
 | DAO layer tests (Customer, Item) pass           | ✅ Pass |
 | Service layer tests (Customer, Item, Auth) pass | ✅ Pass |
@@ -71,12 +54,6 @@
 
 | Task                                       | Status    |
 |--------------------------------------------|-----------|
-
-| `pom.xml` version set to `1.0.0`           | 🕐 Pending |
-| `CHANGELOG.md` entry for v1.0.0 is present | 🕐 Pending |
-| App builds and runs without crash          | 🕐 Pending |
-| No debugging code or console logs remain   | 🕐 Pending |
-
 | `pom.xml` version set to `1.0.0`           | ✅ Pass |
 | `CHANGELOG.md` entry for v1.0.0 is present | ✅ Pass |
 | App builds and runs without crash          | ✅ Pass |
