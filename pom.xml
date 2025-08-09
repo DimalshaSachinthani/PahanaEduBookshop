@@ -4,18 +4,51 @@
   <groupId>org.example</groupId>
   <artifactId>PahanaEdu4</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>PahanaEdu4 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version> <!-- or 6.0.0 if using Jakarta EE 10 -->
+      <scope>provided</scope>
+
+
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>PahanaEdu4</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+    </plugins>
+
   </build>
 </project>
