@@ -29,6 +29,8 @@
 | Help Page           | Instructional content loaded properly   | ✅ Pass |
 
 
+
+
 ---
 
 ## 🧪 JUnit Testing
@@ -39,6 +41,7 @@
 | No skipped or ignored test cases              | ✅ Pass |
 | Test logs clean (no unexpected output/errors) | ✅ Pass |
 
+
 ---
 
 ## 🛡 Security & Routing
@@ -48,6 +51,8 @@
 | Unauthorized access blocked without login            | ✅ Pass |
 | Restricted paths (e.g., `WEB-INF/`) are secure       | ✅ Pass |
 | Session timeout and expiration handled               | ✅ Pass |
+
+
 
 ---
 
@@ -60,12 +65,21 @@
 | All images and text reviewed for typos       | ✅ Pass   |
 | Final UI reviewed for production standards   | ✅ Pass  |
 
+
+
 ---
 
 ## 🗒 Notes
+
+
+- This checklist is pre-filled for v1.0.0 release and will be updated during/after regression testing.
 
 - Test statuses (✅ Pass / ❌ Fail / ✅ Confirmed/ ⚠️ Warning / ⏳ Pending) will be assigned accordingly.
 
 ---
 
 ### 🚀 Ready to Merge into `main`: ✅ Yes 
+
+
+
+
