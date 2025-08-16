@@ -17,6 +17,7 @@
         <li><a href="BillingPage" class="nav-link">💳 Billing</a></li>
         <li><a href="help.jsp" class="nav-link">🆘 Help</a></li>
         <li><a href="Order" class="nav-link">📈 Orders</a></li>
+
       </ul>
     </nav>
     <div class="logout-container">
