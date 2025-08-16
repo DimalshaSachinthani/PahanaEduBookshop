@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 This project follows [Semantic Versioning](https://semver.org/).
 
 ---
+## Version [1.1.0]  - 2025-08-16
+🎨 **UI Design Modifications and Enhancements**
+
+### 🖌️ Changed
+
+- Dashboard navigation updated.
+
+
+---
 
 ## Version [1.0.0]  - 2025-08-09
 🎉 **Initial Production Release**
